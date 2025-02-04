@@ -3,7 +3,7 @@
 The Simulation Output file can be found on Google Drive-(https://drive.google.com/file/d/1dyRJPvkbFp7dXPHU5d8djUMQ2W3BAKGm/view?usp=sharing) 
 
 ## Overview
-This project solves and visualizes 2D heat equation using Finite Difference Method.
+Aim of this project is to study diffusion of heat in2D space through Finite Difference Method and Visualization.
 
 ## Table of Contents:
 1. A brief introduction to Heat Equation.
