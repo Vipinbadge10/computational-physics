@@ -3,13 +3,13 @@
 
 The aim of this project is to simulate a 2D N body Problem of Sun-Earth-Earth's Moon- Mars system and study the orbital eccentricity energy conservation of system when sun losses it's mass every year.
 
-The Simulation output file can be found on Google Drive- (https://drive.google.com/file/d/1J2MrVHV9Bp4acA3YbPkk50ezqO7MoPqd/view?usp=drive_link)
+The Simulation output file for the animation can be found on Google Drive- (https://drive.google.com/file/d/1J2MrVHV9Bp4acA3YbPkk50ezqO7MoPqd/view?usp=drive_link)
 
 ## Initialization and Setups:
-To install these dependencies, you can use `pip`. Below are the commands to install each library:
-sshh:pip install vpython
-pip install numpy
-pip install matplotlib
+To install these dependencies, you can use `pip`.
+sshh:```pip install numpy, pip install matplotlib```
+
+* Key Note: This project use Vpython for Simulation, it is advised to install latest Version of Vpython on Jupyterlab using pip. Vpython causes dependencies issues. 
 
 ## Simulation Details
 This project features a 2D N-body simulation. Despite being limited to a two-dimensional plane, the simulation effectively models the interactions and dynamics of Sun-Earth-Mars and Earth's Moon System.
@@ -99,4 +99,4 @@ The key finding from the simulations are:
 
 * The eccentricity of earth has face a significant decline over timestep, on the other hand Mars shows a little declination however Moon shows no declination. This is the consequence of Newton's Force of attraction that one massive body exhibits on other influencing the orbital paths and impacting the momentum and energy of orbiting system.
 
-Newton's Force of Attraction are directly proportional to mass of bodies and inversely proportional to the separation distance between two bodies. When sun loses it's mass it is influencing total energy of a orbiting system which is the sum of kinetic and potential energy, the angular momentum of orbiting bodies. Higher the force of attraction led to lower energy of orbiting system that results in more circular orbit whereas lower gravitational force of attraction results in higher energy of orbiting system that results in more eccentric paths.
+Newton's Force of Attraction are directly proportional to mass of bodies and inversely proportional to the separation distance between two bodies. When sun loses it's mass it is influencing total energy of a orbiting system, the angular momentum of orbiting bodies. Higher the force of attraction led to lower energy of orbiting system that results in more circular orbit whereas lower gravitational force of attraction results in higher energy of orbiting system that results in more eccentric paths.
