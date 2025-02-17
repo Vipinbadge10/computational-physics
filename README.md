@@ -14,7 +14,7 @@ Branch Link - (https://github.com/Vipinbadge10/computational-physics/blob/N-Body
 
 
 #### 2. Solving 2D Heat Equation using Finite Difference Method.
-Aim of this project is to study diffusion of heat in 2D space through Finite Difference Method and Visualization.
+The aim of this project is to study diffusion of heat in 2D space using Finite Difference Method and animating the result.
 
 
 The animation file for Heat Equation can be found- (https://drive.google.com/file/d/1dyRJPvkbFp7dXPHU5d8djUMQ2W3BAKGm/view?usp=sharing)
@@ -23,4 +23,6 @@ Branch Link-
 (https://github.com/Vipinbadge10/computational-physics/blob/2D-Heat-Equation)
 
 #### 3. Steller Classification of SSDD17 dataset. 
+This project is an implementation of classification algorithms on Steller Datasets and optimizing the Machine Learning models  for better accuracy. 
+
 The source code for this file can be found on Steller Classification branch- (https://github.com/Vipinbadge10/computational-physics/blob/Steller-Classification)
