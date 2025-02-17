@@ -3,7 +3,7 @@
 ## Description
 A brief overview of the project: What is the main objective of this project?
 
-The main objective of this project is to classify Steller Objects "Stars, "Quasars" and "Galaxy" using Classification algorithm that is a method in Supervised Machine Learning Technique specifically used for Classification or Predicting a target variable with a categorical data. 
+The main objective of this project is to classify Steller Objects "Stars, "Quasars" and "Galaxy" using Classification algorithm which is a method in Supervised Machine Learning Technique specifically used for Classification or Predicting a target variable with a categorical data. 
 
 
 ## Installation
