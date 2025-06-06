@@ -11,8 +11,7 @@ sshh:```pip install numpy, pip install matplotlib```
 
 * Key Note: This project use Vpython for Simulation, it is advised to install latest Version of Vpython on Jupyterlab using pip. Vpython causes dependencies issues. 
 
-## Simulation Details
-This project features a 2D N-body simulation. Despite being limited to a two-dimensional plane, the simulation effectively models the interactions and dynamics of Sun-Earth-Mars and Earth's Moon System.
+## Key Concepts:
 
 This Simulation uses Newtonian Mechanics that governs the force of planets and Verlet Leap Frog Integration Method.
 
