@@ -145,21 +145,26 @@ Input: X,Y,T
 Output: $\psi_{real}$ , $\psi_{imaginary}$
 Layer: 3,56,56,2
 
-Loss Functions:
-* Initial Loss
-* Boundary Loss
-* PDE loss
+Loss Functions: The physical constraints and laws of physics is constrianed into neural network in the form of loss function.
+* Initial Loss - for calculating difference in numerical value of initial state of wavefunction at time t = 0 from predicted psi at time = 0 
+* Boundary Loss - for calculating difference in numerical value of psi around the edges of spatial domain, for boundary condition psi at right,left ,top, bottom must be 0
+* PDE loss - for calculating the difference in numerical value of predicted wavefunction that gives the residual =0, when substituting the value of predicted psi in Time Dependent Schrondiger Equation.
+* Probability Conservation loss - to satisy the probability conservation loss.
 
 A Neural Network learns to predict the real and imaginary part of wavefunction from inputs such as spatial (X,Y) and time(t).
 
-The derivate is computed from the predicted wavefunction and to form PDE residual.
-This predicted wavefunction from NN is enforced to obey Schrodinger equation which is incorporated in the form of PDE_Loss.
+The derivate is computed from the predicted wavefunction from the output of NN to form PDE residual.
+This predicted wavefunction from NN is enforced to obey Schrodinger equation which is incorporated in the form of PDE_residual. The predicted psi must give the pde residual = 0 to satisfy the Schrondiger equation.
 
-The Collocation points is sampled across all the domain at time t = 0, the Initial Loss tries to predict the initial condition(Initial Wavefunction) at time t = 0.
+The Collocation points is sampled across all the domain, the Initial Loss is evaluated on set of collocation point at time t = 0 by calculating the MSE between predicted and actual wavefunction function at time t = 0.
 
-The Collocation points is sampled across boundaries and across the barriers and NN also tries to satisfy boundary conditions.
+The Collocation points is sampled across boundaries of spatial domain, the boundary loss is evaluated on set of collocation points around the edges by calculating the MSE between predicted and actual wavefunction around the edges, for boundaries the predicted wavefunction needs to be zero
 
-The collocation points are densely made around post barrier region to capture wavefunctions accurately.
+The collocation points are densely increased around post barrier region to capture wavefunctions accurately.
+
+The NN model is optimized using  ADAM optimizer and by minimizing the total loss- weights_ic * initial loss + weights_bc * boundary loss + weights_pde * pde loss + weights_prob * probability conservation loss.
+
+For better converges of the solution the total loss needs to be closer to 0.
 
 ### Analysis and Results:
 The calculation of Transmission Probability for each method is given below:
@@ -168,7 +173,7 @@ Analytical Transmission Probability - 0.23
 
 Crack Nicolson Transmission Probability - 0.15
 
-PINN Transmission Probability - 0.12
+PINN Transmission Probability - 0.13
 
-With further refinement with lamda value for loss function and additional transmission enforcement law the NN- TDSE model will capture tunnelling behaviour accurately closer to Analytical method.
+With further refinement with weights(lamda value) for loss function and additional transmission enforcement law the NN- TDSE model will capture tunnelling behaviour accurately surpassing the Crank Nicolson method and get closer to Analytical method.
 
