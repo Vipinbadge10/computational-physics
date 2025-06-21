@@ -22,19 +22,19 @@ Here, Tunnelling Probability 'T' is calculated from Evolution of Wave-function b
 $$P(X,Y) = |\psi (x,y)|^2$$
 
 3. We find total probability we need to integrate the probability density of wave-function over whole spatial area.
+   
 $$ Total Probability = \int_{-5}{5}\int_{-5}^{5} P(X,Y) dx dy $$
 
-4. We ensure that the conservation of total probability(probability of finding a particle = 1)
+5. We ensure that the conservation of total probability(probability of finding a particle = 1)
 Total Probability needs to be normalized to conserve total probability.
 
 $$\int_{-5}{5}\int_{-5}^{5} P(x,y) dx dy = 1$$
 
 6. By integrating the probability density at transmitted area we calculate probability at transmitted region.
    
-$${Probability at transmitted region} = \int_{a}{5}\int_{a}^{5} P(x,y) dx dy
+$${Probability at transmitted region} = \int_{a}{5}\int_{a}^{5} P(x,y) dx dy$$
 
-
-8. Finally the Transmission Probability is calculated by taking the ratio of Probability at Transmitted region with Total Probability.
+7. Finally the Transmission Probability is calculated by taking the ratio of Probability at Transmitted region with Total Probability.
    
 $$Tunnelling Probability = \frac{Probability at transmitted region}{Total Probability}$$
 
@@ -62,7 +62,7 @@ $\hbar$ = h/2m where 'h' is plank constant and m is mass of electron.
 
 ### Physical Setup:
 
-A particle is assumed to be moving along X direction, and at a point in X it encounters a potential barrier which is formed by change in energy landscape of a system; means potential energy of a system is higher than the particle's total energy in that point in X direction.
+A particle with an initial wavefunction\[Gaussian Wavepacket\] is assumed to be moving along X direction, and at an origin it encounters a potential barrier which is formed due change in energy landscape of a system; means potential energy of a system is higher than the particle's total energy in that point in X direction.
 
 1.Initial Wavefunction -: Gaussian Wavepacket that describes how my wavefunction of a system will behave at time = 0
 
@@ -89,7 +89,8 @@ Width of barrier - 1e-8
 
 ### Methods Used :
 
-a. Analytical Method - The analytical transmission is calculated directly from schrondiger equation and it given by
+#### 1. Analytical Method:
+The analytical transmission is calculated directly from schrondiger equation and it given by
 
 The energy of the particle is:
 $$ E = \frac{\hbar^2 k_0^2}{2 m_e}$$
@@ -105,7 +106,8 @@ If \( E = V_0 \), the transmission is:
 $$T_{\text{analytical}} = 1$$
 
 
-b. Crack Nicolson- This method is an average of Euler's implicit and explicit method to achieve numerical solutions to the partial differential equation.
+#### 2. Crack Nicolson:
+This method is an average of Euler's implicit and explicit method to achieve numerical solutions to the partial differential equation.
 Crank Nicolson Method
 
 Steps to follow:
@@ -137,13 +139,16 @@ $$\frac{\partial \psi}{\partial t}= \frac{\psi_{n+1} - \psi_{n}}{\Delta t}$$
    $$(I - \frac{-i \Delta t}{2 \hbar}\hat H)\psi_{n+1} = (I - \frac{-i \Delta t}{2 \hbar}\hat H)\psi_{n}$$
 
 
-c. Physics Informed Neural Network-
+#### 3. Physics Informed Neural Network-
 Physics Informed Neural Network are a type of neural network that are useful in solving physics problems such as Heat Equation and Time Dependent Schrodinger Equation because this equations involves solving partial differential equations, the PINN embeds the underlying physical laws into their training process in the form of Loss Function. This approach ensures that prediction of Neural Network is consistent with underlying physics.
 
 Structure of NN architecture:
-Input: X,Y,T
-Output: $\psi_{real}$ , $\psi_{imaginary}$
-Layer: 3,56,56,2
+
+Input: \[X,Y,T\]
+
+Output: \[ $\psi_{real}$ , $\psi_{imaginary}$\]
+
+Layer: \[3,56,56,2\]
 
 Loss Functions: The physical constraints and laws of physics is constrianed into neural network in the form of loss function.
 * Initial Loss - for calculating difference in numerical value of initial state of wavefunction at time t = 0 from predicted psi at time = 0 
@@ -162,9 +167,13 @@ The Collocation points is sampled across boundaries of spatial domain, the bound
 
 The collocation points are densely increased around post barrier region to capture wavefunctions accurately.
 
-The NN model is optimized using  ADAM optimizer and by minimizing the total loss- weights_ic * initial loss + weights_bc * boundary loss + weights_pde * pde loss + weights_prob * probability conservation loss.
+In optimization phase the NN model is optimized by minimizing the gradient of total loss function with respect to networks parameters \[such as weights]\ using backpropagation. The ADAM optimizer here adjusts learning rate, and networks parameter for each iteration. At each iteration \[epoch] the model calculates total loss function, calculates rate of change of total loss w.r.t to network parameters and adjusts the network parameter until the model converges to satifsy the constraints of physical system\[Initial, Boundary and PDE-Schrondiger Equation.]
 
-For better converges of the solution the total loss needs to be closer to 0.
+The total loss is given by: 
+$\mathcal{L} = w_{ic} * loss_{ic} + w_bc * loss_{bc} + w_{pde} * loss_{pde} + w_{prob} * loss_{prob}$
+
+
+and rate of change of total loss w.r.t network parameters: $\frac{\partial L}{\partial W}$
 
 ### Analysis and Results:
 The calculation of Transmission Probability for each method is given below:
@@ -175,5 +184,5 @@ Crack Nicolson Transmission Probability - 0.15
 
 PINN Transmission Probability - 0.13
 
-With further refinement with weights(lamda value) for loss function and additional transmission enforcement law the NN- TDSE model will capture tunnelling behaviour accurately surpassing the Crank Nicolson method and get closer to Analytical method.
+With further refinement with weights(lamda value) for loss function and additional transmission enforcement law, and advance optimizers the NN TDSE model will capture tunnelling behaviour accurately surpassing the Crank Nicolson method and get closer to Analytical method.
 
