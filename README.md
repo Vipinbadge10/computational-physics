@@ -1,4 +1,4 @@
-# Stellar Classification Using Different Algorithms
+# Stellar Classification of SSDD17 through optimizing ML models.
 
 ## Description
 A brief overview of the project: What is the main objective of this project?
